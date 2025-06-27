@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { DocsTreeProvider } from './providers/docs-tree-provider';
 import { DocsContentProvider } from './providers/docs-content-provider';
 import { DocsSearchProvider } from './providers/docs-search-provider';
-import { CopilotHelper } from './utils/copilot-helper';
+import { CopilotHelper } from './helpers/copilot-helper';
 
 /**
  * Main extension activation function.
