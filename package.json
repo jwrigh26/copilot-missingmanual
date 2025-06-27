@@ -1,0 +1,130 @@
+{
+  "name": "copilot-missingmanual",
+  "version": "0.0.1",
+  "displayName": "Copilot Missing Manual",
+  "description": "A simple VS Code extension to help users provide more context to Copilot",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "copilot-missingmanual",
+          "title": "Copilot Missing Manual",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "views": {
+      "copilot-missingmanual": [
+        {
+          "id": "copilot-missingmanual-view",
+          "name": "Copilot Missing Manual",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "copilot-missingmanual.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "copilot-missingmanual.search",
+        "title": "Search Copilot Missing Manual Documentation",
+        "icon": "$(search)"
+      },
+      {
+        "command": "copilot-missingmanual.insertIntoCopilot",
+        "title": "Insert Reference into Copilot Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "copilot-missingmanual.openDoc",
+        "title": "Open Documentation"
+      },
+      {
+        "command": "copilot-missingmanual.search",
+        "title": "Search Documentation",
+        "icon": "$(search)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "copilot-missingmanual.refresh",
+          "when": "view == copilot-missingmanual-view",
+          "group": "navigation"
+        },
+        {
+          "command": "copilot-missingmanual.search",
+          "when": "view == copilot-missingmanual-view",
+          "group": "navigation"
+        }
+      ]
+    },
+    "view/item/context": [
+      {
+        "view": "copilot-missingmanual-view",
+        "commands": [
+          {
+            "command": "copilot-missingmanual.insertIntoCopilot",
+            "when": "viewItem == copilot-missingmanual-view"
+          },
+          {
+            "command": "copilot-missingmanual.openDoc",
+            "when": "viewItem == copilot-missingmanual-view"
+          }
+        ]
+      }
+    ]
+  },
+  "keybindings": [
+    {
+      "command": "copilot-missingmanual.search",
+      "key": "ctrl+d",
+      "mac": "cmd+d"
+    }
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run copy-docs && npm run copy-resources",
+    "copy-docs": "cp -r src/docs out/docs",
+    "copy-resources": "cp -r src/resources out/resources",
+    "compile:watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/vsce": "^2.22.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "highlight.js": "^11.8.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "publisher": "your-github-username",
+  "license": "MIT"
+}

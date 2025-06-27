@@ -1,0 +1,61 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+out/
+*.vsix
+
+# TypeScript cache
+*.tsbuildinfo
+
+# VS Code extension packaging
+.vscode-test/
+.vsix/
+
+# Logs
+*.log
+
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Env files
+.env
+.env.*
+
+# Coverage
+coverage/
+
+# npm debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+*.tgz
+
+# Ignore local history
+.history/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux system files
+*~
+.nfs*
+
+# WSL2 specific
+.wslconfig
+
+# More Mac system files
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
