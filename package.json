@@ -1,6 +1,7 @@
 {
   "name": "copilot-missingmanual",
   "version": "0.0.1",
+  "icon": "icon.png",
   "displayName": "Copilot Missing Manual",
   "description": "A simple VS Code extension to help users provide more context to Copilot",
   "engines": {
