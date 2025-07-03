@@ -21,15 +21,20 @@ export class DocsItem extends vscode.TreeItem {
       this.iconPath = new vscode.ThemeIcon("file-text");
       this.tooltip = `Documentation file: ${this.label}`;
     } else {
-      // Use specfic icons based on folder name
+      // Use specific icons based on folder name
       let iconName = "folder";
       let iconColor = undefined;
       switch (this.label.toLowerCase()) {
+        case "missing manual":
+          iconName = "book";
+          iconColor = new vscode.ThemeColor("charts.blue");
+          break;
         case "getting-started":
           iconName = "rocket";
           iconColor = new vscode.ThemeColor("folderIcon.gettingStarted");
           break;
         case "vscode-extensions":
+        case "vs-code-extensions":
           iconName = "extensions";
           iconColor = new vscode.ThemeColor("folderIcon.vscodeExtensions");
           break;
@@ -198,8 +203,25 @@ export class DocsTreeProvider
       return Promise.resolve([]);
     }
 
-    const targetPath = element ? element.filePath : this.docsPath;
-    return Promise.resolve(this.getDocsInDirectory(targetPath));
+    // If no element is provided, return the root "Missing Manual" item
+    if (!element) {
+      return Promise.resolve([
+        new DocsItem(
+          "Missing Manual",
+          vscode.TreeItemCollapsibleState.Expanded,
+          this.docsPath,
+          false
+        ),
+      ]);
+    }
+
+    // If element is the "Missing Manual" root, show its contents
+    if (element.label === "Missing Manual") {
+      return Promise.resolve(this.getDocsInDirectory(this.docsPath));
+    }
+
+    // For other folders, show their contents normally
+    return Promise.resolve(this.getDocsInDirectory(element.filePath));
   }
 
   /**

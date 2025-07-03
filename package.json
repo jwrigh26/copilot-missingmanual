@@ -92,7 +92,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./ && npm run copy-docs && npm run copy-resources",
-    "copy-docs": "cp -r src/docs out/docs",
+    "copy-docs": "cp -r src/docs/* out/docs/",
     "copy-resources": "cp -r src/resources out/resources",
     "compile:watch": "tsc -watch -p ./",
     "lint": "eslint src --ext .ts,.tsx",
