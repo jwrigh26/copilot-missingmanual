@@ -19,14 +19,14 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "copilot-missingmanual",
+          "id": "copilot-missingmanualContainer",
           "title": "Copilot Missing Manual",
           "icon": "$(book)"
         }
       ]
     },
     "views": {
-      "copilot-missingmanual": [
+      "copilot-missingmanualContainer": [
         {
           "id": "copilot-missingmanual-view",
           "name": "Copilot Missing Manual",
@@ -36,13 +36,13 @@
     },
     "commands": [
       {
-        "command": "copilot-missingmanual.refresh",
+        "command": "copilot-missingmanual.refreshDocs",
         "title": "Refresh",
         "icon": "$(refresh)"
       },
       {
-        "command": "copilot-missingmanual.search",
-        "title": "Search Copilot Missing Manual Documentation",
+        "command": "copilot-missingmanual.searchDocs",
+        "title": "Search Documentation",
         "icon": "$(search)"
       },
       {
@@ -51,52 +51,44 @@
         "icon": "$(comment-discussion)"
       },
       {
-        "command": "copilot-missingmanual.openDoc",
+        "command": "copilot-missingmanual.openDocs",
         "title": "Open Documentation"
-      },
-      {
-        "command": "copilot-missingmanual.search",
-        "title": "Search Documentation",
-        "icon": "$(search)"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "copilot-missingmanual.refresh",
+          "command": "copilot-missingmanual.refreshDocs",
           "when": "view == copilot-missingmanual-view",
           "group": "navigation"
         },
         {
-          "command": "copilot-missingmanual.search",
+          "command": "copilot-missingmanual.searchDocs",
           "when": "view == copilot-missingmanual-view",
           "group": "navigation"
         }
+      ],
+      "view/item/context": [
+        {
+          "command": "copilot-missingmanual.insertIntoCopilot",
+          "when": "view == copilot-missingmanual-view",
+          "group": "inline"
+        },
+        {
+          "command": "copilot-missingmanual.openDocs",
+          "when": "view == copilot-missingmanual-view",
+          "group": "inline"
+        }
       ]
     },
-    "view/item/context": [
+    "keybindings": [
       {
-        "view": "copilot-missingmanual-view",
-        "commands": [
-          {
-            "command": "copilot-missingmanual.insertIntoCopilot",
-            "when": "viewItem == copilot-missingmanual-view"
-          },
-          {
-            "command": "copilot-missingmanual.openDoc",
-            "when": "viewItem == copilot-missingmanual-view"
-          }
-        ]
+        "command": "copilot-missingmanual.searchDocs",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d"
       }
     ]
   },
-  "keybindings": [
-    {
-      "command": "copilot-missingmanual.search",
-      "key": "ctrl+d",
-      "mac": "cmd+d"
-    }
-  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./ && npm run copy-docs && npm run copy-resources",

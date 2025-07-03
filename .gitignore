@@ -19,8 +19,6 @@ out/
 # Mac system files
 .DS_Store
 
-# VS Code settings
-.vscode/
 
 # Env files
 .env
